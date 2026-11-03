@@ -1,9 +1,15 @@
+import { BrowserRouter } from "react-router-dom";
+import "./App.css";
 import Navigation from "./Navigation";
 
-const App = () => {
+function App() {
   return (
-    <Navigation />
+    <div >
+      <BrowserRouter>
+        <Navigation />
+      </BrowserRouter>
+    </div>
   );
-};
+}
 
 export default App;

@@ -1,9 +1,8 @@
-import { lazy } from "react";
+import { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 
-const Login = lazy(() => import("./components/Login"));
+const Login = lazy(() => import("./components/Login/Login"));
 
-// Route config
 const routes = Object.freeze([
   { path: "/", element: <Login />, auth: false },
 ]);
@@ -11,11 +10,13 @@ const routes = Object.freeze([
 const Navigation = () => {
   return (
     <main className="App">
-      <Routes>
-        {routes?.map(({ path, element }, idx) => (
-          <Route key={idx} path={path} element={element} />
-        ))}
-      </Routes>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Routes>
+          {routes.map(({ path, element }, idx) => (
+            <Route key={idx} path={path} element={element} />
+          ))}
+        </Routes>
+      </Suspense>
     </main>
   );
 };
